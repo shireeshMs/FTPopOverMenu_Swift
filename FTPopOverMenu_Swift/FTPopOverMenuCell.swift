@@ -2,7 +2,7 @@
 //  FTPopOverMenuCell.swift
 //  FTPopOverMenu_Swift
 //
-//  Created by Abdullah Selek on 28/07/2017.
+//  ReCreated by Shireesh on 10/12/2018.
 //  Copyright © 2016 LiuFengting (https://github.com/liufengting) . All rights reserved.
 //
 
