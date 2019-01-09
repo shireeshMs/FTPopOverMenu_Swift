@@ -29,25 +29,24 @@ class FTPopOverMenuCell: UITableViewCell {
         return label
     }()
 
-    func setupCellWith(menuName: String, menuImage: Imageable?, cellConfiguration: FTCellConfiguration) {
+    func setupCellWith(menuName: String, menuImage: String?) {
         self.backgroundColor = UIColor.clear
-        
-        // Configure cell text
-        nameLabel.font = cellConfiguration.textFont
-        nameLabel.textColor = cellConfiguration.textColor
-        nameLabel.textAlignment = cellConfiguration.textAlignment
-        nameLabel.text = menuName
-        nameLabel.frame = CGRect(x: FT.DefaultCellMargin, y: 0, width: configuration.menuWidth - FT.DefaultCellMargin*2, height: configuration.menuRowHeight)
-        
-        // Configure cell icon if available
-        if var iconImage = menuImage?.getImage() {
-            if  cellConfiguration.ignoreImageOriginalColor {
-                iconImage = iconImage.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        if menuImage != nil {
+            if var iconImage : UIImage = UIImage(named: menuImage!) {
+                if  configuration.ignoreImageOriginalColor {
+                    iconImage = iconImage.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+                }
+                iconImageView.tintColor = configuration.textColor
+                iconImageView.frame =  CGRect(x: FT.DefaultCellMargin, y: (configuration.menuRowHeight - configuration.menuIconSize)/2, width: configuration.menuIconSize, height: configuration.menuIconSize)
+                iconImageView.image = iconImage
+                nameLabel.frame = CGRect(x: FT.DefaultCellMargin*2 + configuration.menuIconSize, y: (configuration.menuRowHeight - configuration.menuIconSize)/2, width: (configuration.menuWidth - configuration.menuIconSize - FT.DefaultCellMargin*3), height: configuration.menuIconSize)
+            }else{
+                nameLabel.frame = CGRect(x: FT.DefaultCellMargin, y: 0, width: configuration.menuWidth - FT.DefaultCellMargin*2, height: configuration.menuRowHeight)
             }
-            iconImageView.tintColor = cellConfiguration.textColor
-            iconImageView.frame =  CGRect(x: FT.DefaultCellMargin, y: (configuration.menuRowHeight - cellConfiguration.menuIconSize)/2, width: cellConfiguration.menuIconSize, height: cellConfiguration.menuIconSize)
-            iconImageView.image = iconImage
-            nameLabel.frame = CGRect(x: FT.DefaultCellMargin*2 + cellConfiguration.menuIconSize, y: (configuration.menuRowHeight - cellConfiguration.menuIconSize)/2, width: (configuration.menuWidth - cellConfiguration.menuIconSize - FT.DefaultCellMargin*3), height: cellConfiguration.menuIconSize)
         }
+        nameLabel.font = configuration.textFont
+        nameLabel.textColor = configuration.textColor
+        nameLabel.textAlignment = configuration.textAlignment
+        nameLabel.text = menuName
     }
 }

@@ -13,21 +13,21 @@ extension UIControl {
     // solution found at: http://stackoverflow.com/a/5666430/6310268
 
     internal func setAnchorPoint(anchorPoint: CGPoint) {
-        var newPoint = CGPoint(x: bounds.size.width * anchorPoint.x, y: bounds.size.height * anchorPoint.y)
-        var oldPoint = CGPoint(x: bounds.size.width * layer.anchorPoint.x, y: bounds.size.height * layer.anchorPoint.y)
+        var newPoint = CGPoint(x: self.bounds.size.width * anchorPoint.x, y: self.bounds.size.height * anchorPoint.y)
+        var oldPoint = CGPoint(x: self.bounds.size.width * self.layer.anchorPoint.x, y: self.bounds.size.height * self.layer.anchorPoint.y)
 
-        newPoint = newPoint.applying(transform)
-        oldPoint = oldPoint.applying(transform)
+        newPoint = newPoint.applying(self.transform)
+        oldPoint = oldPoint.applying(self.transform)
 
-        var position = layer.position
+        var position = self.layer.position
         position.x -= oldPoint.x
         position.x += newPoint.x
 
         position.y -= oldPoint.y
         position.y += newPoint.y
 
-        layer.position = position
-        layer.anchorPoint = anchorPoint
+        self.layer.position = position
+        self.layer.anchorPoint = anchorPoint
     }
 
 }
