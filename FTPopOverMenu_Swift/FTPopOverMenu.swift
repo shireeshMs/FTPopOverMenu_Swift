@@ -10,6 +10,7 @@ import UIKit
 
 extension FTPopOverMenu {
     
+    // check
     public static func showForSender(sender : UIView, with menuArray: [String], done: @escaping (NSInteger) -> Void, cancel:@escaping () -> Void) {
         self.sharedMenu.showForSender(sender: sender, or: nil, with: menuArray, menuImageArray: [], done: done, cancel: cancel)
     }
